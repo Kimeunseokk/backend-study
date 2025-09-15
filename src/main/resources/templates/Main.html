@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>커피 주문</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <div class="container">
+        <img th:src="@{/img/coffee.jpeg}" alt="커피 이미지" class="coffee-img">
+        <!-- a 태그로 링크 걸기 -->
+        <a th:href="@{/menu}">
+            <button class="order-btn">주문</button>
+        </a>
+    </div>
+</body>
+</html>

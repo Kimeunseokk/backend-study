@@ -23,9 +23,13 @@ public class Menu {
     @Column(length = 100, nullable = false,columnDefinition = "TEXT")
     private String name; // 제품이름
 
+    @Column(name = "PRICE")
     private int price; // 가격
 
+    @Column(name = "SOLD_OUT")
     private boolean soldOut; // 품절여부
+
+    private int num; //수량 
 
     
 }
