@@ -6,12 +6,13 @@
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
-    <div class="container">
-        <img th:src="@{/img/coffee.jpeg}" alt="커피 이미지" class="coffee-img">
-        <!-- a 태그로 링크 걸기 -->
-        <a th:href="@{/menu}">
-            <button class="order-btn">주문</button>
-        </a>
-    </div>
+    <!-- a 태그로 컨테이너 전체를 클릭 가능하게 감싸기 -->
+    <a th:href="@{/menu}" class="container-link">
+        <div class="container">
+            <img th:src="@{/img/coffee.jpeg}" alt="커피 이미지" class="coffee-img">
+            <h2>맛있는 커피</h2>
+            <p>커피를 주문하려면 클릭하세요.</p>
+        </div>
+    </a>
 </body>
 </html>

@@ -6,24 +6,20 @@
     <link rel="stylesheet" th:href="@{/css/menu.css}">
 </head>
 <body>
+    <!-- 네비게이션바 -->
+    <nav th:replace="~{navbar :: navbarFragment}"></nav>
+
     <h1>메뉴 목록</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>이름</th>
-                <th>가격</th>
-                <th>품절 여부</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="menu : ${menus}">
-                <td th:text="${menu.id}">ID</td>
-                <td th:text="${menu.name}">이름</td>
-                <td th:text="${menu.price}">가격</td>
-                <td th:text="${menu.soldOut} ? '품절' : '판매중'">품절 여부</td>
-            </tr>
-        </tbody>
-    </table>
+
+    <!-- 메뉴 카드 컨테이너 -->
+    <div class="menu-container">
+        <a th:each="menu : ${menus}" th:href="@{'/order/' + ${menu.id}}" class="menu-card">
+            <img th:src="@{/img/coffee.jpeg}" alt="메뉴 이미지" class="menu-img">
+            <h3 th:text="${menu.name}">메뉴 이름</h3>
+            <p th:text="${menu.price} + '원'">가격</p>
+            <p th:text="${menu.soldOut} ? '품절' : '판매중'">상태</p>
+        </a>
+    </div>
+
 </body>
 </html>

@@ -2,6 +2,8 @@ package backend.study;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,6 +35,8 @@ class StudyApplicationTests {
         menu2.setPrice(4500);
         menu2.setSoldOut(true);
         menu2.setNum(0);
+
+        Optional<Menu> m = menuRepository.findByNum(10);
 
         
 

@@ -29,6 +29,7 @@ public class Menu {
     @Column(name = "SOLD_OUT")
     private boolean soldOut; // 품절여부
 
+    @Column(name = "NUM")
     private int num; //수량 
 
     

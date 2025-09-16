@@ -37,6 +37,7 @@ public class MenuService {
         menu.setName(menuData.getName());
         menu.setPrice(menuData.getPrice());
         menu.setSoldOut(menuData.isSoldOut());
+        menu.setNum(menuData.getNum());
         return menu;
     }
     // 메뉴 삭제
