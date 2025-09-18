@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 페이지</title>
+    <link rel="stylesheet" href="/css/manager.css">
+</head>
+<body>
+    <h1>메뉴 관리</h1>
+
+    <!-- 메뉴 등록 폼 -->
+    <div class="form-container">
+        <h2>새 메뉴 추가</h2>
+        <form th:action="@{/manager/add}" method="post" id="addMenuForm">
+            <input type="text" name="name" placeholder="이름" required>
+            <input type="number" name="price" placeholder="가격" required>
+            <input type="number" name="num" placeholder="수량" required>
+            <label>품절 여부: <input type="checkbox" name="soldOut"></label>
+            <input type="text" name="imgpath" placeholder="이미지 경로">
+            <button type="submit">추가</button>
+        </form>
+    </div>
+
+    <hr>
+
+    <!-- 메뉴 목록 -->
+    <h2>등록된 메뉴</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>이름</th>
+                <th>가격</th>
+                <th>수량</th>
+                <th>품절</th>
+                <th>이미지</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="menu : ${menus}" th:id="'row-' + ${menu.id}">
+                <td th:text="${menu.id}"></td>
+                <td><input type="text" th:value="${menu.name}" class="name"></td>
+                <td><input type="number" th:value="${menu.price}" class="price"></td>
+                <td><input type="number" th:value="${menu.num}" class="num"></td>
+                <td><input type="checkbox" th:checked="${menu.soldOut}" class="soldOut"></td>
+                <td><input type="text" th:value="${menu.imgpath}" class="imgpath"></td>
+                <td>
+                    <button class="updateBtn" th:data-id="${menu.id}">수정</button>
+                </td>
+                <td>
+                    <button class="deleteBtn" th:data-id="${menu.id}">삭제</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="/js/manager.js"></script>
+</body>
+</html>

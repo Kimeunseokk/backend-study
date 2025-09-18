@@ -21,31 +21,11 @@ public class MenuService {
         return menuRepository.findAll();
     }
 
-    @Transactional
-    public Menu createMenu(Menu menu){
-        return menuRepository.save(menu);
-    }
 
     public Menu getMenu(Long id){
         return menuRepository.findById(id).orElseThrow();
     }
 
-     // 메뉴 수정
-    @Transactional
-    public Menu updateMenu(Long id, Menu menuData) {
-        Menu menu = menuRepository.findById(id).orElseThrow();
-        menu.setName(menuData.getName());
-        menu.setPrice(menuData.getPrice());
-        menu.setSoldOut(menuData.isSoldOut());
-        menu.setNum(menuData.getNum());
-        return menu;
-    }
-    // 메뉴 삭제
-    @Transactional
-    public Menu deleteMenu(Long id){
-        Menu menu = menuRepository.findById(id).orElseThrow();
-        menuRepository.delete(menu);
-        return menu;
-    }
+   
 
 }

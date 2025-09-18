@@ -20,8 +20,9 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id; 
 
-    @Column(length = 100, nullable = false,columnDefinition = "TEXT")
-    private String name; // 제품이름
+    @Column(nullable = false, length = 100)
+    private String name;
+
 
     @Column(name = "PRICE")
     private int price; // 가격
@@ -31,6 +32,8 @@ public class Menu {
 
     @Column(name = "NUM")
     private int num; //수량 
+
+    private String imgpath;
 
     
 }
