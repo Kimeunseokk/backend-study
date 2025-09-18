@@ -38,9 +38,14 @@ public class ManagerService {
         menuRepository.delete(menu);
         return menu;
     }
-     @Transactional
+    @Transactional
     public Menu createMenu(Menu menu){
         return menuRepository.save(menu);
+    }
+
+    @Transactional
+    public Menu addMenu(Menu menu){
+        return  menuRepository.save(menu);
     }
 
 }

@@ -30,7 +30,7 @@ public class ManagerController {
     // 메뉴 추가
     @PostMapping("/add")
     public String addMenu(@ModelAttribute Menu menu) {
-        managerService.createMenu(menu);
+        managerService.addMenu(menu);
         return "redirect:/manager"; // 등록 후 새로고침
     }
 

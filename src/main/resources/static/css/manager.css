@@ -22,9 +22,33 @@ button {
     cursor: pointer;
 }
 
+/* 상단 고정 버튼 */
+.top-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.top-button button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.top-button button:hover {
+    background-color: #45a049;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 80px; /* 상단 버튼 공간 확보 */
 }
 
 table, th, td {

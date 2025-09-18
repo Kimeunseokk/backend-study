@@ -23,24 +23,24 @@ class StudyApplicationTests {
     @Transactional
     @Rollback(false)
     void TestMenuSave() {
-        // 메뉴 객체 생성
-        Menu menu1 = new Menu();
-        menu1.setName("아메리카노");
-        menu1.setPrice(3500);
-        menu1.setSoldOut(false);
-        menu1.setNum(10);
-        menu1.setImgpath("/img/ica.jpeg");
+        // // 메뉴 객체 생성
+        // Menu menu1 = new Menu();
+        // menu1.setName("아메리카노");
+        // menu1.setPrice(3500);
+        // menu1.setSoldOut(false);
+        // menu1.setNum(10);
+        // menu1.setImgpath("/img/ica.jpeg");
 
-        Menu menu2 = new Menu();
-        menu2.setName("아이스바닐라라떼");
-        menu2.setPrice(4500);
-        menu2.setSoldOut(true);
-        menu2.setNum(0);
-        menu2.setImgpath("/img/아바라.jpeg");
+        // Menu menu2 = new Menu();
+        // menu2.setName("아이스바닐라라떼");
+        // menu2.setPrice(4500);
+        // menu2.setSoldOut(true);
+        // menu2.setNum(0);
+        // menu2.setImgpath("/img/아바라.jpeg");
 
-        // DB에 저장 (H2 파일 DB 자동 생성)
-        menuRepository.save(menu1);
-        menuRepository.save(menu2);
-        menuRepository.flush(); // 강제 반영
+        // // DB에 저장 (H2 파일 DB 자동 생성)
+        // menuRepository.save(menu1);
+        // menuRepository.save(menu2);
+        // menuRepository.flush(); // 강제 반영
     }
 }
