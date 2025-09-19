@@ -1,54 +1,103 @@
+/* 전체 배경 */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f3f0;
     margin: 0;
-    padding: 20px;
+    font-family: "Noto Sans KR", sans-serif;
+    background: linear-gradient(135deg, #f5deb3, #e8c9a9); /* 연갈색 그라데이션 */
+    color: #3e2723; /* 카페 느낌의 진한 갈색 */
+}
+
+/* 네비게이션바 */
+nav {
+    background-color: #5c4033; /* 진한 카페 브라운 */
+    padding: 15px 30px;
     text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
+nav a {
+    color: #f5f5f5;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.2s ease-in-out;
+}
+
+nav a:hover {
+    color: #ffd700; /* 골드 느낌 */
+}
+
+/* 제목 */
 h1 {
-    margin-bottom: 30px;
+    text-align: center;
+    margin: 40px 0 20px;
+    color: #4b2e2e;
+    font-size: 2em;
+    letter-spacing: 2px;
+    font-family: "Georgia", serif; /* 카페 감성 */
 }
 
-/* 메뉴 컨테이너: 가로로 정렬 */
+/* 메뉴 카드 컨테이너 */
 .menu-container {
-    display: flex;
-    flex-wrap: wrap; /* 화면 작아지면 줄바꿈 */
-    justify-content: center; /* 가운데 정렬 */
-    gap: 20px; /* 카드 사이 간격 */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 25px;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 /* 메뉴 카드 */
 .menu-card {
-    display: block;
-    width: 200px;
-    padding: 15px;
-    border: 2px solid #ddd;
-    border-radius: 12px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    text-decoration: none; /* 링크 밑줄 제거 */
-    color: inherit; /* 글자색 상속 */
-    transition: transform 0.2s;
+    background: #fffaf0; /* 플로랄 화이트 - 크림톤 */
+    border-radius: 16px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #e0c097;
 }
 
 .menu-card:hover {
-    transform: scale(1.05);
-    cursor: pointer;
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    background: #fff5e1; /* 조금 더 따뜻한 톤 */
 }
 
 /* 메뉴 이미지 */
 .menu-img {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 10px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-/* 메뉴 이름, 가격, 상태 */
+/* 메뉴 이름 */
 .menu-card h3 {
-    margin: 5px 0;
+    font-size: 1.3em;
+    margin: 10px 0 8px;
+    color: #3e2723;
+    font-weight: bold;
 }
-.menu-card p {
-    margin: 2px 0;
+
+/* 가격 */
+.menu-card p:nth-of-type(1) {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #8b4513;
+    margin: 8px 0;
+}
+
+/* 상태 */
+.menu-card p:nth-of-type(2) {
+    font-size: 0.9em;
+    color: #666;
+    font-style: italic;
 }

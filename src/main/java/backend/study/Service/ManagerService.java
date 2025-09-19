@@ -45,7 +45,7 @@ public class ManagerService {
 
     @Transactional
     public Menu addMenu(Menu menu){
-        return  menuRepository.save(menu);
+        return menuRepository.save(menu);
     }
 
 }
