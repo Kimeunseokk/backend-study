@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>메뉴 목록</title>
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+<body>
+    <!-- 상단 고정 버튼 -->
+    <div class="top-button">
+        <a href="/manager">
+            <button type="button">
+                <i class="fa-solid fa-utensils"></i> 관리자 페이지로 이동
+            </button>
+        </a>
+    </div>
+
+    <!-- 네비게이션 바 -->
+    <nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+    <h1>메뉴 목록</h1>
+
+    <!-- 메뉴 카드 컨테이너 -->
+    <div class="menu-container">
+        <!-- 메뉴 전체를 a 태그로 감싸서 클릭 시 주문 페이지로 이동 -->
+        <a th:each="menu : ${paging.content}" th:href="@{'/order/' + ${menu.id}}" class="menu-card">
+            <img th:src="@{${menu.imgpath}}" alt="메뉴 이미지" class="menu-img">
+            <h3 th:text="${menu.name}">메뉴 이름</h3>
+            <p th:text="${menu.price} + '원'">가격</p>
+            <p th:text="${menu.soldOut} ? '품절' : '판매중'">상태</p>
+        </a>
+    </div>
+
+    <!-- 페이지네이션 -->
+    <div class="pagination">
+        <!-- 이전 버튼 -->
+        <a th:if="${paging.hasPrevious()}" 
+           th:href="@{/menu/list(page=${paging.number - 1})}">이전</a>
+
+        <!-- 전체 페이지 번호 출력 -->
+        <span th:each="pageNum : ${#numbers.sequence(0, paging.totalPages - 1)}">
+            <a th:if="${pageNum != paging.number}"
+               th:href="@{/menu/list(page=${pageNum})}"
+               th:text="${pageNum + 1}">
+            </a>
+            <span th:if="${pageNum == paging.number}" 
+                  th:text="${pageNum + 1}" 
+                  class="current"></span>
+        </span>
+
+        <!-- 다음 버튼 -->
+        <a th:if="${paging.hasNext()}" 
+           th:href="@{/menu/list(page=${paging.number + 1})}">다음</a>
+    </div>
+</body>
+</html>

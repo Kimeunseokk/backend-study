@@ -5,6 +5,7 @@ import java.util.List;
 import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import backend.study.Entity.Menu;
@@ -29,9 +30,9 @@ public class MenuService {
         return menuRepository.findById(id).orElseThrow();
     }
 
-    public Page<Menu> getList(int page) {
-        PageRequest pageable = PageRequest.of(page, 10);
-        return this.menuRepository.findAll(pageable);
+    public Page<Menu> getList(int page, int size) {
+        PageRequest pageable = PageRequest.of(page, size);
+        return menuRepository.findAll(pageable);
     }
    
 

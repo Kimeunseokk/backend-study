@@ -17,12 +17,12 @@
         </a>
     </div>
 
-    <h1>메뉴 관리</h1>
+    <h1>관리자 페이지</h1>
 
-    <!-- 메뉴 등록 폼 -->
+    <!-- ================= 메뉴 관리 ================= -->
     <div class="form-container">
         <h2>새 메뉴 추가</h2>
-        <form th:action="@{/manager/add}" method="post" id="addMenuForm">
+        <form th:action="@{/manager/menu/add}" method="post" id="addMenuForm">
             <input type="text" name="name" placeholder="이름" required>
             <input type="number" name="price" placeholder="가격" required>
             <input type="number" name="num" placeholder="수량" required>
@@ -34,7 +34,6 @@
 
     <hr>
 
-    <!-- 메뉴 목록 -->
     <h2>등록된 메뉴</h2>
     <table>
         <thead>
@@ -50,7 +49,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="menu : ${menus}" th:id="'row-' + ${menu.id}">
+            <tr th:each="menu : ${menus}" th:id="'menu-' + ${menu.id}">
                 <td th:text="${menu.id}"></td>
                 <td><input type="text" th:value="${menu.name}" class="name"></td>
                 <td><input type="number" th:value="${menu.price}" class="price"></td>
@@ -58,10 +57,48 @@
                 <td><input type="checkbox" th:checked="${menu.soldOut}" class="soldOut"></td>
                 <td><input type="text" th:value="${menu.imgpath}" class="imgpath"></td>
                 <td>
-                    <button class="updateBtn" th:data-id="${menu.id}">수정</button>
+                    <button class="updateMenuBtn" th:data-id="${menu.id}">수정</button>
                 </td>
                 <td>
-                    <button class="deleteBtn" th:data-id="${menu.id}">삭제</button>
+                    <button class="deleteMenuBtn" th:data-id="${menu.id}">삭제</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- ================= 주문 내역 관리 ================= -->
+    <h2>주문 내역</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>메뉴</th>
+                <th>수량</th>
+                <th>요청사항</th>
+                <th>주문 상태</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="order : ${orders}" th:id="'order-' + ${order.id}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.menu.name}"></td>
+                <td><input type="number" th:value="${order.quantity}" class="quantity"></td>
+                <td><input type="text" th:value="${order.notes}" class="notes"></td>
+                <td>
+                    <select class="status">
+                        <option th:value="true" th:selected="${order.status}">완료</option>
+                        <option th:value="false" th:selected="${!order.status}">미완료</option>
+                    </select>
+                </td>
+                <td>
+                    <button class="updateOrderBtn" th:data-id="${order.id}">수정</button>
+                </td>
+                <td>
+                    <button class="deleteOrderBtn" th:data-id="${order.id}">삭제</button>
                 </td>
             </tr>
         </tbody>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>주문하기</title>
+  <link rel="stylesheet" th:href="@{/css/order.css}">
+</head>
+<body>
+  <!-- 네비게이션 -->
+  <nav>
+      <a href="/">Home</a>
+      <a href="/menu/list">Menu</a>
+  </nav>
+
+  <div class="order-container">
+      <h1>주문하기</h1>
+
+      <!-- 메뉴 정보 -->
+      <div class="menu-info">
+          <img th:src="@{${menu.imgpath}}" alt="메뉴 이미지" class="menu-img">
+          <h2 th:text="${menu.name}">메뉴명</h2>
+          <p th:text="'₩' + ${menu.price}">가격</p>
+      </div>
+
+      <!-- 주문 폼 -->
+      <div class="order-form">
+          <label>수량</label>
+          <input type="number" id="quantity" value="1" min="1">
+
+          <label>요청사항</label>
+          <textarea id="notes" placeholder="예: 덜 맵게, 얼음 많이"></textarea>
+
+          <!-- 숨겨진 메뉴 id -->
+          <input type="hidden" id="menuId" th:value="${menu.id}">
+
+          <button>주문하기</button>
+      </div>
+  </div>
+</body>
+</html>

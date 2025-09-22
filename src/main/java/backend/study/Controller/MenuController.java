@@ -31,6 +31,11 @@ public class MenuController {
         return "Menu"; // templates/Menu.html
     }
 
-   
+    @GetMapping("/list")
+    public String list(Model model, @RequestParam(value="page", defaultValue="0") int page) {
+        Page<Menu> paging = this.menuService.getList(page,8);
+        model.addAttribute("paging", paging);
+        return "Menu_list";
+    }
     
 }

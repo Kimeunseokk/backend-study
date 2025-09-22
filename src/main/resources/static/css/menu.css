@@ -101,3 +101,43 @@ h1 {
     color: #666;
     font-style: italic;
 }
+
+/* 페이지네이션 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+    gap: 8px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.pagination a, 
+.pagination span {
+    padding: 10px 16px;
+    border-radius: 25px;
+    border: 1px solid #8b5e3c; /* 카페 브라운 */
+    background: #fffaf0; /* 크림톤 */
+    color: #5c4033; /* 다크 브라운 */
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* hover 효과 */
+.pagination a:hover {
+    background: #d2b48c; /* 따뜻한 브라운 */
+    color: #fff;
+    border-color: #a0522d;
+    transform: translateY(-2px);
+}
+
+/* 현재 페이지 */
+.pagination .current {
+    background: linear-gradient(135deg, #8b5e3c, #5c4033); /* 고급스러운 브라운 그라데이션 */
+    color: #fff;
+    border: none;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+    cursor: default;
+}
