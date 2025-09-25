@@ -10,7 +10,7 @@
 <body>
     <!-- 상단 고정 버튼 -->
     <div class="top-button">
-        <a href="/menu">
+        <a href="/menu/list">
             <button type="button">
                 <i class="fa-solid fa-utensils"></i> 메뉴 페이지로 이동
             </button>
@@ -38,7 +38,7 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
+                <th>제품ID</th>
                 <th>이름</th>
                 <th>가격</th>
                 <th>수량</th>
@@ -73,7 +73,7 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
+                <th>주문번호</th>
                 <th>메뉴</th>
                 <th>수량</th>
                 <th>요청사항</th>
@@ -84,7 +84,7 @@
         </thead>
         <tbody>
             <tr th:each="order : ${orders}" th:id="'order-' + ${order.id}">
-                <td th:text="${order.id}"></td>
+                <td th:text="${order.usernum}"></td>
                 <td th:text="${order.menu.name}"></td>
                 <td><input type="number" th:value="${order.quantity}" class="quantity"></td>
                 <td><input type="text" th:value="${order.notes}" class="notes"></td>

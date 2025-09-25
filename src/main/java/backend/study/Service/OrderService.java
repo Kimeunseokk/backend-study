@@ -4,16 +4,22 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import backend.study.Entity.Menu;
 import backend.study.Entity.Order;
+import backend.study.Repository.MenuRepository;
 import backend.study.Repository.OrderRepository;
 import jakarta.transaction.Transactional;
 
+@Service
 public class OrderService {
     private final OrderRepository orderRepository;
+    private final MenuRepository menuRepository;
 
-    public OrderService(OrderRepository orderRepository){
+    public OrderService(OrderRepository orderRepository, MenuRepository menuRepository){
         this.orderRepository = orderRepository;
+        this.menuRepository = menuRepository;
     }
     
     public String generateOrderNum() {
@@ -32,9 +38,17 @@ public class OrderService {
     }
 
     @Transactional
-    public Order addOrder(Order order){
-        return orderRepository.save(order);
-    }
+    public Order addOrder(Long menuId, int quantity, String notes) {
+    Menu menu = menuRepository.findById(menuId).orElseThrow();
+    Order order = new Order();
+    order.setMenu(menu);
+    order.setQuantity(quantity);
+    order.setNotes(notes);
+    order.setStatus(false); // 기본 미완료
+    order.setUsernum(generateOrderNum());
+    return orderRepository.save(order);
+}
+
 
     // 주문내역 삭제
     @Transactional

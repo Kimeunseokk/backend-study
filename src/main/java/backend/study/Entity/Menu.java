@@ -35,7 +35,7 @@ public class Menu {
 
     private String imgpath;
 
-    // private String kind; // 품목종류
+    //private String kind; // 품목종류
 
     
 }

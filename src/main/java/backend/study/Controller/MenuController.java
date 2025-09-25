@@ -24,12 +24,12 @@ public class MenuController {
         this.menuService = menuService;
     }
 
-    @GetMapping  // GET /menu
-    public String getMenus(Model model) {
-        List<Menu> menus = menuService.getAllMenus();
-        model.addAttribute("menus", menus);
-        return "Menu"; // templates/Menu.html
-    }
+    // @GetMapping  // GET /menu
+    // public String getMenus(Model model) {
+    //     List<Menu> menus = menuService.getAllMenus();
+    //     model.addAttribute("menus", menus);
+    //     return "Menu"; // templates/Menu.html
+    // }
 
     @GetMapping("/list")
     public String list(Model model, @RequestParam(value="page", defaultValue="0") int page) {
@@ -37,5 +37,5 @@ public class MenuController {
         model.addAttribute("paging", paging);
         return "Menu_list";
     }
-    
+
 }
