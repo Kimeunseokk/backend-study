@@ -46,7 +46,7 @@ public class KakaoUserInfoResponseDto {
     @Getter
     @NoArgsConstructor
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public class KakaoAccount {
+    public static class KakaoAccount {
 
         //프로필 정보 제공 동의 여부
         @JsonProperty("profile_needs_agreement")
@@ -152,7 +152,7 @@ public class KakaoUserInfoResponseDto {
         @Getter
         @NoArgsConstructor
         @JsonIgnoreProperties(ignoreUnknown = true)
-        public class Profile {
+        public static class Profile {
 
             //닉네임
             @JsonProperty("nickname")

@@ -1,35 +1,45 @@
 package backend.study.Service;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import backend.study.Dto.KakaoUserInfoResponseDto;
 import backend.study.Entity.User;
 import backend.study.Repository.UserRepository;
-import groovy.util.logging.Slf4j;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.Optional;
 
 @Service
-@lombok.extern.slf4j.Slf4j
+@RequiredArgsConstructor
+@Slf4j
 public class UserService {
 
     private final UserRepository userRepository;
-    private final String KAUTH_USER_URL_HOST = "https://kapi.kakao.com";
 
-    public UserService(UserRepository userRepository){
-        this.userRepository = userRepository;
-    } // @RequiredArgsConstructor 이거쓰면 굳이 다시 선언할 필요가 없음
+    /**
+     * 카카오 사용자 정보를 기반으로 DB 조회 후 없으면 저장
+     * @param dto KakaoUserInfoResponseDto
+     * @return User 엔터티
+     */
+    public User findOrSave(KakaoUserInfoResponseDto dto) {
+        Optional<User> existingUser = userRepository.findByKakaoId(dto.getId());
 
+        if (existingUser.isPresent()) {
+            log.info("기존 사용자 로그인: KakaoId={}", dto.getId());
+            return existingUser.get();
+        }
 
-  public User findOrSave(KakaoUserInfoResponseDto dto) {
-    return userRepository.findByKakaoId(dto.getId())
-        .orElseGet(() -> {
-            User user = new User();
-            user.setKakaoId(dto.getId()); // DB PK id는 자동 증가
-            user.setNickname(dto.getKakaoAccount().getProfile().getNickName());
-            user.setProfileImageUrl(dto.getKakaoAccount().getProfile().getProfileImageUrl());
-            return userRepository.save(user);
-        });
+        // DB에 사용자 저장
+        User user = new User();
+        user.setKakaoId(dto.getId());
+        user.setNickname(dto.getKakaoAccount().getProfile().getNickName());
+        user.setProfileImageUrl(dto.getKakaoAccount().getProfile().getProfileImageUrl());
+        user.setEmail(dto.getKakaoAccount().getEmail());
+
+        User savedUser = userRepository.save(user);
+        log.info("신규 사용자 저장: KakaoId={}, Nickname={}", savedUser.getKakaoId(), savedUser.getNickname());
+
+        return savedUser;
     }
 }

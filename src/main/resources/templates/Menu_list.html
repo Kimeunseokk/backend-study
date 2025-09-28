@@ -4,15 +4,32 @@
     <meta charset="UTF-8">
     <title>메뉴 목록</title>
     <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <!-- 폰트어썸 사용 예시 -->
+    <link rel="stylesheet" th:href="@{/css/fontawesome.css}">
 </head>
 <body>
-    <!-- 상단 고정 버튼 -->
-    <div class="top-button">
-        <a href="/manager">
-            <button type="button">
-                <i class="fa-solid fa-utensils"></i> 관리자 페이지로 이동
-            </button>
-        </a>
+    <!-- 상단 고정 바 -->
+    <div class="top-bar">
+        <div class="left-button">
+            <a href="/manager">
+                <button type="button">
+                    <i class="fa-solid fa-utensils"></i> 관리자 페이지로 이동
+                </button>
+            </a>
+        </div>
+        <div class="right-user">
+            <!-- 로그인 안 된 경우 -->
+            <span th:if="${session.LoginUser == null}">
+                <a href="/login/page">
+                    <button type="button">카카오 로그인</button>
+                </a>
+            </span>
+            <!-- 로그인 된 경우 -->
+            <span th:if="${session.LoginUser != null}" class="user-info">
+                <span th:text="'안녕하세요, ' + ${session.LoginUser.nickname} + '님'"></span>
+                <button id="logoutBtn" type="button">로그아웃</button>
+            </span>
+        </div>
     </div>
 
     <!-- 네비게이션 바 -->
@@ -22,8 +39,9 @@
 
     <!-- 메뉴 카드 컨테이너 -->
     <div class="menu-container">
-        <!-- 메뉴 전체를 a 태그로 감싸서 클릭 시 주문 페이지로 이동 -->
-        <a th:each="menu : ${paging.content}" th:href="@{'/order/' + ${menu.id}}" class="menu-card">
+        <a th:each="menu : ${paging.content}" 
+           th:href="@{'/order/' + ${menu.id}}" 
+           class="menu-card">
             <img th:src="@{${menu.imgpath}}" alt="메뉴 이미지" class="menu-img">
             <h3 th:text="${menu.name}">메뉴 이름</h3>
             <p th:text="${menu.price} + '원'">가격</p>
@@ -52,5 +70,8 @@
         <a th:if="${paging.hasNext()}" 
            th:href="@{/menu/list(page=${paging.number + 1})}">다음</a>
     </div>
+
+    <!-- JS 파일 연결 (로그아웃 처리) -->
+    <script th:src="@{/js/logout.js}"></script>
 </body>
 </html>

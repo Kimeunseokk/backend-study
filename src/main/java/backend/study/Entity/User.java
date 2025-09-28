@@ -7,21 +7,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+
+@Entity
 @Getter
 @Setter
-@Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    // 어떤 메뉴인지 참조
-    @ManyToOne(fetch = FetchType.LAZY) // LAZY 로딩 권장
-    @JoinColumn(name = "Order_id", nullable = false)
-    private Order order;
 
     private Long kakaoId;          // ✅ 카멜케이스
     private String email;
