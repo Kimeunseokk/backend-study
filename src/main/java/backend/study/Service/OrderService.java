@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import backend.study.Entity.Menu;
 import backend.study.Entity.Order;
+import backend.study.Entity.Cartitem;
 import backend.study.Repository.MenuRepository;
+import backend.study.Repository.CartRepository;
 import backend.study.Repository.OrderRepository;
 import jakarta.transaction.Transactional;
 
@@ -16,10 +18,12 @@ import jakarta.transaction.Transactional;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final MenuRepository menuRepository;
+    private final CartRepository ordercartRepository;
 
-    public OrderService(OrderRepository orderRepository, MenuRepository menuRepository){
+    public OrderService(OrderRepository orderRepository, MenuRepository menuRepository, CartRepository ordercartRepository){
         this.orderRepository = orderRepository;
         this.menuRepository = menuRepository;
+        this.ordercartRepository = ordercartRepository;
     }
     
     public String generateOrderNum() {
@@ -66,7 +70,6 @@ public class OrderService {
         order.setOrderDate(orderdata.getOrderDate()); // 주문일자
         return order;
     }
-     
 
     
 }

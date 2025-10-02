@@ -28,6 +28,12 @@
             <span th:if="${session.LoginUser != null}" class="user-info">
                 <span th:text="'안녕하세요, ' + ${session.LoginUser.nickname} + '님'"></span>
                 <button id="logoutBtn" type="button">로그아웃</button>
+                <!-- 장바구니 보기 버튼 -->
+                 <a href="/cart/list">
+                    <button type="button">
+                        <i class="fa-solid fa-cart-shopping"></i> 주문 목록
+                    </button>
+                </a>
             </span>
         </div>
     </div>

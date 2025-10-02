@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>장바구니 목록</title>
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
+</head>
+<body>
+    <div class="top-bar">
+        <h2>🛒 장바구니</h2>
+        <div class="right">
+            <a href="/menu/list">
+                <button type="button">메뉴 목록으로</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="cart-container">
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>메뉴 이미지</th>
+                    <th>메뉴 이름</th>
+                    <th>수량</th>
+                    <th>요청사항</th>
+                    <th>주문 여부</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${cartitems}">
+                    <td>
+                        <img th:src="@{${item.menu.imgpath}}" alt="메뉴 이미지" class="cart-img">
+                    </td>
+                    <td th:text="${item.menu.name}">메뉴 이름</td>
+                    <td th:text="${item.quantity}">1</td>
+                    <td th:text="${item.notes != null ? item.notes : '요청사항 없음'}">요청사항 없음</td>
+                    <td th:text="${item.ordered} ? '주문됨' : '장바구니'">장바구니</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="cart-actions">
+        <button type="button" id="orderBtn">주문하기</button>
+    </div>
+
+    <!-- JS 연결 -->
+    <script th:src="@{/js/cart_order.js}"></script>
+</body>
+</html>

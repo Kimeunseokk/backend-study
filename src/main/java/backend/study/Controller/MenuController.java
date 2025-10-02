@@ -9,20 +9,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import backend.study.Service.CartService;
 import backend.study.Service.MenuService;
+import lombok.RequiredArgsConstructor;
 import backend.study.Entity.Menu;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/menu")
 public class MenuController {
 
     private final MenuService menuService;
+    private final CartService cartService;
 
-    public MenuController(MenuService menuService) {
-        this.menuService = menuService;
-    }
+
 
     // @GetMapping  // GET /menu
     // public String getMenus(Model model) {
@@ -37,5 +39,7 @@ public class MenuController {
         model.addAttribute("paging", paging);
         return "Menu_list";
     }
+    
+    
 
 }
