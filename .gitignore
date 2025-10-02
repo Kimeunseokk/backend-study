@@ -17,6 +17,9 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
+# macOS 자동 생성 파일
+.DS_Store
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
