@@ -7,6 +7,11 @@ build/
 *.mv.db
 *.trace.db
 src/main/resources/application.properties
+# Mac 시스템 파일 무시
+.DS_Store
+
+# DB 스토어 무시
+db_store/
 
 ### STS ###
 .apt_generated
